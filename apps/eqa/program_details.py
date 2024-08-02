@@ -110,7 +110,7 @@ form = dbc.Form(
                 dbc.Label(
                     [
                         "Institute/ Department ",
-                        html.Span("*", style={"color":"#F8B237"})
+                        html.Span("", style={"color":"#F8B237"})
                     ],
                     width=4
                 ),

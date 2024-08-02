@@ -36,21 +36,21 @@ layout = html.Div(
                                     dbc.Input(
                                         type='text',
                                         id='programlist_filter',
-                                        placeholder='?? Search by Degree Program, College, Department, Cluster',
+                                        placeholder=' Search by Degree Program, College, Department, Cluster',
                                         className='ml-auto'   
                                     ),
                                     width="8",
                                 ),
                                 dbc.Col(   
                                     dbc.Button(
-                                        "? Add Program", color="primary", 
+                                        "+ Add Program", color="primary", 
                                         href='/program_details?mode=add', 
                                     ),
                                     width="auto",    
                                 ),
                                 dbc.Col(   
                                     dbc.Button(
-                                        "? Add Program Info", color="warning", 
+                                        "+ Add Program Info", color="warning", 
                                         href='/program_info', 
                                     ),
                                     width="auto",    
@@ -116,8 +116,8 @@ def programlist_loadlist(pathname, searchterm):
                 INNER JOIN public.deg_unit du ON pd.pro_department_id = du.deg_unit_id
                 INNER JOIN public.clusters cl ON pd.pro_cluster_id = cl.cluster_id
                 INNER JOIN eqateam.program_type pt ON pd.pro_program_type_id = pt.programtype_id
-                WHERE
-                    NOT pro_del_ind
+            WHERE 
+                pd.pro_del_ind = false
         """
         cols = ['ID', "Degree Program", "College", "Department", "Cluster",  "Program Type", 
                 "Academic Calendar Type"]
@@ -168,3 +168,4 @@ def programlist_loadlist(pathname, searchterm):
             return [html.Div("No records to display")]
     else:
         raise PreventUpdate
+
